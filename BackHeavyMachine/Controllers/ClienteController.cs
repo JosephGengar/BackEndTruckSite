@@ -6,6 +6,7 @@ using BackHeavyMachine.Models.Repuestas;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using BackHeavyMachine.Models;
+using BackHeavyMachine.Models.Vistas;
 
 namespace BackHeavyMachine.Controllers
 {
@@ -39,6 +40,30 @@ namespace BackHeavyMachine.Controllers
             }
 
             return Ok(Resp);
+        }
+        [HttpPost]
+        public IActionResult Agregar([FromBody] ClienteView modelo)
+        {
+            Respuesta oResp = new Respuesta();
+            try
+            {
+                using (HeavyMachineContext db = new HeavyMachineContext())
+                {
+                    TCliente oCliente = new TCliente();
+                    oCliente.Nombre = modelo.nombre;
+                    oCliente.Telefono = modelo.telefono;
+                    db.TCliente.Add(oCliente);
+                    db.SaveChanges();
+                    oResp.exito = 1;
+                    oResp.mensajes = "exito";
+                }
+            }
+            catch (Exception ex)
+            {
+                oResp.mensajes = ex.Message;
+                oResp.exito = 0;
+            }
+            return Ok(oResp);
         }
     }
 }
