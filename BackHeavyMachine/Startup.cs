@@ -34,6 +34,7 @@ namespace BackHeavyMachine
                     {
                         builder.WithOrigins("*");
                         builder.WithHeaders("*");
+                        builder.WithMethods("*");
                     });
             });
         }

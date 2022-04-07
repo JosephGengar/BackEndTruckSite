@@ -18,9 +18,9 @@ namespace BackHeavyMachine.Controllers
         public IActionResult VerClientes()
         {
             Respuesta Resp = new Respuesta();
-           try
+            try
             {
-               using (HeavyMachineContext db = new HeavyMachineContext())
+                using (HeavyMachineContext db = new HeavyMachineContext())
                 {
                     var lst = (from d in db.TCliente
                                select d).ToList();
@@ -31,7 +31,7 @@ namespace BackHeavyMachine.Controllers
                         Resp.mensajes = "Exito";
                     }
                 }
-               
+
             }
             catch (Exception ex)
             {
@@ -90,5 +90,29 @@ namespace BackHeavyMachine.Controllers
             }
             return Ok(oResp);
         }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Borrar(int id)
+        {
+            Respuesta oResp = new Respuesta();
+            try
+            {
+                using (HeavyMachineContext db = new HeavyMachineContext())
+                {
+                    var Ouser = db.TCliente.Find(id);
+                    db.TCliente.Remove(Ouser);
+                    await db.SaveChangesAsync();
+                    oResp.exito = 1;
+                    oResp.mensajes = "exito";
+                }
+            }
+            catch (Exception ex)
+            {
+                oResp.exito = 0;
+                oResp.mensajes = ex.Message;
+            }
+
+            return Ok(oResp);
+        }
+       
     }
 }
