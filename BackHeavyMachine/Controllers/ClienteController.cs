@@ -65,5 +65,30 @@ namespace BackHeavyMachine.Controllers
             }
             return Ok(oResp);
         }
+        [HttpPut]
+        public IActionResult Editar([FromBody] ClienteView modelo)
+        {
+            Respuesta oResp = new Respuesta();
+            try
+            {
+                using (HeavyMachineContext db = new HeavyMachineContext())
+                {
+                    var oUser = db.TCliente.Find(modelo.id);
+                    oUser.Nombre = modelo.nombre;
+                    oUser.Telefono = modelo.telefono;
+                    db.Entry(oUser).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    db.SaveChanges();
+                    oResp.exito = 1;
+                    oResp.mensajes = "exito";
+                }
+            }
+            catch (Exception ex)
+            {
+
+                oResp.mensajes = ex.Message;
+                oResp.exito = 0;
+            }
+            return Ok(oResp);
+        }
     }
 }
