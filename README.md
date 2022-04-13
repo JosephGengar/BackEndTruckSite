@@ -32,3 +32,5 @@ Con la solicitud Delete eliminamos el regitro que elegimos por medio del Id del 
 En esta caso vemos el Inicio de sesion que por medio de una solicitud post envia los datos a corroborar a la base de datos en nuestro controller y 
 se efectua una respuesta, la cual en caso de ser exitosa, tambien devuelve un dato especifico en un objeto que luego sera usado en el localstorage 
 del proyecto de angular.
+
+Tecnologias Utilizadas: Lenguaje C# con Visual Studio Net Core, Entity Framework, SqlServer y Postman.
