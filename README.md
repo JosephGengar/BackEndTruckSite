@@ -9,7 +9,7 @@ exito: que puede ser 0 para un error y 1 para confirmar la respuesta correcta.
 data: que puede contener cualquier objeto de este tipo, en este caso se va a llenar de una coleccion de datos para mostrar la lista de clientes y 
 tambien una propiedad especifica.
 
-mensajes: que es una propiedad extra, si queremos recibir un mensaje expecifico dependiendo de la respuesta.
+mensajes: que es una propiedad extra, si queremos recibir un mensaje especifico dependiendo de la respuesta.
 
 Proyecto en Angular que consume la api: https://github.com/JosephGengar/AngularTruckSite
 
